@@ -1,54 +1,45 @@
 import React, {Component} from 'react';
 import Login from './Login.jsx';
 import Navbar from './Navbar.jsx';
-<<<<<<< HEAD
 import firebase from 'firebase';
-||||||| merged common ancestors
-=======
 import Feed from './Feed.jsx';
 import postData from '../../../dummydata.json';
->>>>>>> Expand and hide messages on click
 
 class App extends Component {
-<<<<<<< HEAD
-	constructor(props) {
-		super(props);
-	}
-
-	signOut () {
-		firebase.auth().signOut();
-	}
-||||||| merged common ancestors
-  constructor() {
-    super();
-  }
-=======
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      user: 'carol',
+      myPosts: false
     }
+    this.showMyPosts = this.showMyPosts.bind(this);
   }
-
+  
   componentDidMount() {
     this.setState({
       posts: postData
     });
   }
->>>>>>> Expand and hide messages on click
+
+	signOut () {
+		firebase.auth().signOut();
+	}
+
+  showMyPosts() {
+    this.setState({ myPosts: !this.state.myPosts });
+  }
 
   render() {
-
     return (
       <div>
         <h1>Instagram Clone</h1>
-        <Navbar />
-<<<<<<< HEAD
         <Login />
-||||||| merged common ancestors
-=======
-        <Feed posts={this.state.posts}/>
->>>>>>> Expand and hide messages on click
+
+        <Navbar showMyPosts={this.showMyPosts}/>
+        <Feed posts={this.state.posts}
+              myPosts={this.state.myPosts}
+              user={this.state.user}/>
       </div>
     );
   }
