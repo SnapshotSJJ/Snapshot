@@ -1,46 +1,40 @@
 import React from 'react';
-import { config } from '../firebase/firebase.js';
-import * as firebase from 'firebase';
+import { config, uiConfig } from '../firebase/firebase.js';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebase from 'firebase';
 
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			emailInput: '',
-			passwordInput: ''
+			signedIn: false,
 		};
-		firebase.initialize(config);
-	}
+		firebase.initializeApp(config);
+		console.log(uiConfig)
+	}	
 
-	handleEmailInput (e) {
-		this.setState({ emailInput: e.target.value });
-	}
-
-	handlePasswordInput (e) {
-		this.setState({ passwordInput: e.target.value });
-	}
-
-	createNewUser () {
-		let email = this.state.emailInput;
-		let password = this.state.passwordInput;
-		firebase.auth().createUserWithEmailAndPassword(email, password).catch( (error) => {
-			let errorCode = error.code;
-			let errorMessage = error.message;
-			if (errorCode = 'auth/weak-password') {
-				alert('Password too weak');
-			} else {
-				alert(errorMessage);
-			}
-			console.log(error);
-		});
-	}
-
-	render () {
-		return (
-			<input type="text" value={this.state.email} onChange={this.handleEmailInput.bind(this)}/>
-      <input type="text" value={this.state.password} onChange={this.handlePasswordInput.bind(this)}/>
-      <button onClick={this.createNewUser.bind(this)}>create user</button>
+	componentDidMount() {
+		firebase.auth().onAuthStateChanged(
+			(user) => this.setState({ signedIn: !!user })
 		);
+	}
+
+	render() {
+		if (!this.state.signedIn) {
+      return (
+        <div>
+          <h1>My App</h1>
+          <p>Please sign-in:</p>
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <h1>My App</h1>
+        <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+      </div>
+    );
 	}
 }
 

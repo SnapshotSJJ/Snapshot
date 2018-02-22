@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 const config = {
   apiKey: "AIzaSyA9uss6PuP-aC6YGLDfpezE_iEQLpnjmfk",
@@ -9,39 +9,19 @@ const config = {
   messagingSenderId: "589901781908"
 };
 
-// if (!firebase.apps.length) {
-// 	firebase.initializeApp(config);
-// }
-
-// let initialize = firebase.initializeApp(config);
-
-// let createUser = firebase.auth().createUserWithEmailAndPassword(email, password).catch( (error) => {
-// 	if (error) {
-// 		console.log(error);
-// 	}
-// });
-
-// let signIn = firebase.auth().signInWithEmailAndPassword(email, password).catch( (error) => {
-// 	if (error) {
-// 		console.log(error);
-// 	}
-// });
-
-// let signOut = firebase.auth().signOut.then( () => {
-// 	console.log('sign out successful');
-// }).catch( (error) => {
-// 	console.log(error);
-// });
-
-// const auth = firebase.auth();
-
-
+const uiConfig = {
+	//signInFlow: 'popup',
+	signInOptions: [
+		firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+  ],
+  callbacks: {
+  	signInSuccess: () => false
+  }
+};
 
 export {
-	// initialize,
-	// createUser,
-	// signIn,
-	// signOut,
-	// auth,
 	config,
+	uiConfig
 };

@@ -17,8 +17,10 @@
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.2",
     "firebase": "^4.10.0",
+    "firebaseui": "^2.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-firebaseui": "^1.1.8",
     "webpack": "^3.11.0"
   }
 }
