@@ -10,9 +10,9 @@ const Comments = (props) => {
           <button>Submit</button>
         </div>
       </div>
-    )
+    );
   }
   return null;
-}
+};
 
 export default Comments;

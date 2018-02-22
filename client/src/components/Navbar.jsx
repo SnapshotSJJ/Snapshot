@@ -6,6 +6,6 @@ const Navbar = (props) => {
       <strong onClick={props.showMyPosts}>My Posts</strong> | <strong>Make Post</strong> | <strong>Logout</strong>
     </div>
   );
-}
+};
 
 export default Navbar;

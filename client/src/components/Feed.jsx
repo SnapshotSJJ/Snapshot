@@ -8,11 +8,9 @@ const Feed = (props) => {
       {props.posts.map((post, index) => {
         if (props.myPosts) {
           return props.user === post.username ? <Post key={index} post={post}/> : null;
-        } else {
-          return <Post key={index} post={post}/>
         }
-      }
-      )}
+        return <Post key={index} post={post} />;
+      })}
     </div>
   );
 };

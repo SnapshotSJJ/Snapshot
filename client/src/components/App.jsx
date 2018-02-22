@@ -11,14 +11,14 @@ class App extends Component {
     this.state = {
       posts: [],
       user: 'carol',
-      myPosts: false
+      myPosts: false,
     }
     this.showMyPosts = this.showMyPosts.bind(this);
   }
   
   componentDidMount() {
     this.setState({
-      posts: postData
+      posts: postData,
     });
   }
 
@@ -35,11 +35,12 @@ class App extends Component {
       <div>
         <h1>Instagram Clone</h1>
         <Login />
-
-        <Navbar showMyPosts={this.showMyPosts}/>
-        <Feed posts={this.state.posts}
-              myPosts={this.state.myPosts}
-              user={this.state.user}/>
+        <Navbar showMyPosts={this.showMyPosts} />
+        <Feed
+          posts={this.state.posts}
+          myPosts={this.state.myPosts}
+          user={this.state.user}
+        />
       </div>
     );
   }
