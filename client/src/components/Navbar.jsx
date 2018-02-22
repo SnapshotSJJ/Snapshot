@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div>
-      <strong>My Posts</strong> | <strong>Make Post</strong> | <strong>Logout</strong>
+      <strong onClick={props.showMyPosts}>My Posts</strong> | <strong>Make Post</strong> | <strong>Logout</strong>
     </div>
   );
 }

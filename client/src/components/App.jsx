@@ -7,8 +7,11 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      posts: []
+      posts: [],
+      user: 'carol',
+      myPosts: false
     }
+    this.showMyPosts = this.showMyPosts.bind(this);
   }
 
   componentDidMount() {
@@ -17,12 +20,18 @@ class App extends Component {
     });
   }
 
+  showMyPosts() {
+    this.setState({ myPosts: !this.state.myPosts });
+  }
+
   render() {
     return (
       <div>
         <h1>Instagram Clone</h1>
-        <Navbar />
-        <Feed posts={this.state.posts}/>
+        <Navbar showMyPosts={this.showMyPosts}/>
+        <Feed posts={this.state.posts}
+              myPosts={this.state.myPosts}
+              user={this.state.user}/>
       </div>
     );
   }

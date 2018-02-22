@@ -5,6 +5,10 @@ const Comments = (props) => {
     return (
       <div>
         {props.comments.map((comment, index) => <li key={index}>{comment}</li>)}
+        <div>
+          <input onChange={props.createComment} />
+          <button>Submit</button>
+        </div>
       </div>
     )
   }

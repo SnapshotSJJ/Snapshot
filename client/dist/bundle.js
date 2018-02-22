@@ -18310,8 +18310,11 @@ var App = function (_Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
     _this.state = {
-      posts: []
+      posts: [],
+      user: 'carol',
+      myPosts: false
     };
+    _this.showMyPosts = _this.showMyPosts.bind(_this);
     return _this;
   }
 
@@ -18321,6 +18324,11 @@ var App = function (_Component) {
       this.setState({
         posts: _dummydata2.default
       });
+    }
+  }, {
+    key: 'showMyPosts',
+    value: function showMyPosts() {
+      this.setState({ myPosts: !this.state.myPosts });
     }
   }, {
     key: 'render',
@@ -18333,8 +18341,10 @@ var App = function (_Component) {
           null,
           'Instagram Clone'
         ),
-        _react2.default.createElement(_Navbar2.default, null),
-        _react2.default.createElement(_Feed2.default, { posts: this.state.posts })
+        _react2.default.createElement(_Navbar2.default, { showMyPosts: this.showMyPosts }),
+        _react2.default.createElement(_Feed2.default, { posts: this.state.posts,
+          myPosts: this.state.myPosts,
+          user: this.state.user })
       );
     }
   }]);
@@ -18361,13 +18371,13 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Navbar = function Navbar() {
+var Navbar = function Navbar(props) {
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(
       'strong',
-      null,
+      { onClick: props.showMyPosts },
       'My Posts'
     ),
     ' | ',
@@ -18418,7 +18428,11 @@ var Feed = function Feed(props) {
       'Feed'
     ),
     props.posts.map(function (post, index) {
-      return _react2.default.createElement(_Post2.default, { key: index, post: post });
+      if (props.myPosts) {
+        return props.user === post.username ? _react2.default.createElement(_Post2.default, { key: index, post: post }) : null;
+      } else {
+        return _react2.default.createElement(_Post2.default, { key: index, post: post });
+      }
     })
   );
 };
@@ -18463,9 +18477,11 @@ var Post = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Post.__proto__ || Object.getPrototypeOf(Post)).call(this, props));
 
     _this.state = {
-      displayMessages: false
+      displayMessages: false,
+      myComment: ''
     };
     _this.expandMessages = _this.expandMessages.bind(_this);
+    _this.createComment = _this.createComment.bind(_this);
     return _this;
   }
 
@@ -18473,6 +18489,11 @@ var Post = function (_Component) {
     key: 'expandMessages',
     value: function expandMessages() {
       this.setState({ displayMessages: !this.state.displayMessages });
+    }
+  }, {
+    key: 'createComment',
+    value: function createComment(e) {
+      this.setState({ myComment: e.target.value });
     }
   }, {
     key: 'render',
@@ -18487,7 +18508,8 @@ var Post = function (_Component) {
           this.props.post.username
         ),
         _react2.default.createElement(_Comments2.default, { comments: this.props.post.comments,
-          displayMessages: this.state.displayMessages })
+          displayMessages: this.state.displayMessages,
+          createComment: this.createComment })
       );
     }
   }]);
@@ -18503,7 +18525,7 @@ exports.default = Post;
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = [{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]}]
+module.exports = [{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"bob","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["hey","what","How is it going?"]},{"username":"carol","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["it","is","not","working"]},{"username":"carol","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["it","is","not","working"]},{"username":"carol","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["it","is","not","working"]},{"username":"carol","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["it","is","not","working"]},{"username":"carol","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["it","is","not","working"]},{"username":"carol","imgSrc":"https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405","comments":["it","is","not","working"]}]
 
 /***/ }),
 /* 32 */
@@ -18533,7 +18555,17 @@ var Comments = function Comments(props) {
           { key: index },
           comment
         );
-      })
+      }),
+      _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('input', { onChange: props.createComment }),
+        _react2.default.createElement(
+          'button',
+          null,
+          'Submit'
+        )
+      )
     );
   }
   return null;
