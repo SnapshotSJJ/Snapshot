@@ -150,7 +150,7 @@ User.sync({force: false}).then(() => {
   return User.bulkCreate(usersData)
     .then(() => {
       console.log('updated users');
-      createPostsTable();
+      return createPostsTable();
     })
     .then(() => {
       createCommentsTable();
