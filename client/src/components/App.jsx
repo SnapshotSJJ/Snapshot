@@ -14,6 +14,7 @@ class App extends Component {
       myPosts: false,
     }
     this.showMyPosts = this.showMyPosts.bind(this);
+    this.signOut= this.signOut.bind(this);
   }
   
   componentDidMount() {
@@ -34,12 +35,12 @@ class App extends Component {
     return (
       <div>
         <h1>Instagram Clone</h1>
-        <Login />
-        <Navbar showMyPosts={this.showMyPosts} />
-        <Feed
-          posts={this.state.posts}
+        <Login 
+        	posts={this.state.posts}
           myPosts={this.state.myPosts}
           user={this.state.user}
+          showMyPosts={this.showMyPosts}
+          signOut={this.signOut}
         />
       </div>
     );

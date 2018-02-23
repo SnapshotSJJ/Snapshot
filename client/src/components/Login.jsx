@@ -2,6 +2,8 @@ import React from 'react';
 import { config, uiConfig } from '../firebase/firebase.js';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
+import Navbar from './Navbar.jsx';
+import Feed from './Feed.jsx';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -33,6 +35,12 @@ class Login extends React.Component {
       <div>
         <h1>My App</h1>
         <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+        <Navbar showMyPosts={this.props.showMyPosts} signOut={this.props.signOut}/>
+        <Feed
+          posts={this.props.posts}
+          myPosts={this.props.myPosts}
+          user={this.props.user}
+        />
       </div>
     );
 	}
