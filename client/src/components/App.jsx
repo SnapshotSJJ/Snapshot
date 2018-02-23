@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Login from './Login.jsx';
+import Navbar from './Navbar.jsx';
 import firebase from 'firebase';
 
 class App extends Component {
@@ -10,14 +11,14 @@ class App extends Component {
 	signOut () {
 		firebase.auth().signOut();
 	}
-	
+
   render() {
 
     return (
       <div>
         <h1>Hello World!</h1>
+        <Navbar />
         <Login />
-        
       </div>
     );
   }
