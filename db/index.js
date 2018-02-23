@@ -1,15 +1,15 @@
 const mysql = require('mysql');
 
-var user = 'some_username'; /* change user to actual username */
-var password = 'some_secret_password'; /* change password to actual password */
-var db = 'database_name'; /* change to name of db */
+var user = 'root';
+var password = 'password';
+var db = 'instagram';
 
 var connection = mysql.createConnection({
 
   host: 'localhost',
   user: user,
   password: password,
-  database: database
+  database: db
 
 });
 
