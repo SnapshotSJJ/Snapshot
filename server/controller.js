@@ -38,6 +38,16 @@ module.exports = {
 				})
 		},
 
+		getAllComments: (req, res) => {
+			sequelize.query(`select users.name, text
+											 from comments join users
+											 where users.id=user_id
+											 and post_id=${req.params.postID}`, { type: sequelize.QueryTypes.SELECT })
+				.then((comments) => {
+				res.status(200).send(comments);
+				})
+		},
+
 		getFollowersPosts: (req, res) => {
 			console.log('test')
 		},

@@ -31,7 +31,6 @@ class App extends Component {
       this.setState({
         posts: data
       });
-      console.log(data);
     });
   }
 

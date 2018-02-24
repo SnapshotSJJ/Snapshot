@@ -4,7 +4,7 @@ const Comments = (props) => {
   if (props.displayMessages) {
     return (
       <div>
-        {props.comments.map((comment, index) => <li key={index}>{comment}</li>)}
+        {props.comments.map((comment, index) => <li key={index}>{comment.name}: {comment.text}</li>)}
         <div>
           <input onChange={props.createComment} />
           <button>Submit</button>
