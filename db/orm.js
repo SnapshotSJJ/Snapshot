@@ -10,7 +10,9 @@ const sequelize = new Sequelize('instagram', 'root', 'password', {
     acquire: 30000,
     idle: 10000,
     handleDisconnects: true,
-    define: {timestamps: true}
+    define: {
+      timestamps: true
+    }
   }
 });
 
@@ -31,6 +33,9 @@ const User = sequelize.define('user', {
     autoIncrement: true
   },
   name: Sequelize.STRING
+},
+{
+  underscored: true
 });
 
 const Post = sequelize.define('post', {
@@ -40,13 +45,9 @@ const Post = sequelize.define('post', {
     autoIncrement: true
   },
   img_src: Sequelize.STRING,
-  user_id: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: User,
-      key: 'id'
-    }
-  }
+},
+{
+  underscored: true
 });
 
 const Comment = sequelize.define('comment', {
@@ -56,21 +57,17 @@ const Comment = sequelize.define('comment', {
     autoIncrement: true
   },
   text: Sequelize.STRING,
-  user_id: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: User,
-      key: 'id'
-    }
-  },
-  post_id: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Post,
-      key: 'id'
-    }
-  }
+},
+{
+  underscored: true
 });
+
+Comment.belongsTo(Post);
+Comment.belongsTo(User);
+Post.hasMany(Comment);
+User.hasMany(Comment);
+Post.belongsTo(User);
+User.hasMany(Post);
 
 module.exports.User = User;
 module.exports.Post = Post;
