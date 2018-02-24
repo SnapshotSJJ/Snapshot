@@ -23,8 +23,8 @@ class Post extends Component {
   render() {
     return (
       <div>
-        <img onClick={this.expandMessages} src={this.props.post.imgSrc} />
-        <h5>{this.props.post.username}</h5>
+        <img onClick={this.expandMessages} src={this.props.post.img_src} />
+        <h5>{this.props.post.name}</h5>
         <Comments comments={this.props.post.comments}
                   displayMessages={this.state.displayMessages}
                   createComment={this.createComment}/>
