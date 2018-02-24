@@ -1,3 +1,4 @@
+const { User, Post, Comment } = require('../db/orm.js');
 
 module.exports = {
 
@@ -29,7 +30,20 @@ module.exports = {
 		// },
 
 		getAllPosts: (req, res) => {
-			console.log('haha')
+			User.findAll({
+				include: [
+					{
+						model: Post,
+						include: [
+							{
+								model: Comment
+							}
+						]
+					}
+				]
+			}).then((users) => {
+				res.status(200).send(users);
+			})
 		},
 
 		getFollowersPosts: (req, res) => {
