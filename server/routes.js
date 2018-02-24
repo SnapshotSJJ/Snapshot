@@ -11,6 +11,8 @@ router.post('/posts/upload/submit', ctrl.posts.submitNewPost);
 
 router.get('/posts/all', ctrl.posts.getAllPosts);
 
+router.get('/posts/comments/:postID', ctrl.posts.getAllComments);
+
 router.get('/posts/followers', ctrl.posts.getFollowersPosts);
 
 router.post('/posts/comment/:postID', ctrl.posts.postSingleComment)

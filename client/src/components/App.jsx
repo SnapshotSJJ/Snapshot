@@ -4,6 +4,7 @@ import Navbar from './Navbar.jsx';
 import firebase from 'firebase';
 import Feed from './Feed.jsx';
 import postData from '../../../dummydata.json';
+import $ from 'jquery';
 
 class App extends Component {
   constructor() {
@@ -18,14 +19,20 @@ class App extends Component {
   }
   
   componentDidMount() {
-    this.setState({
-      posts: postData,
-    });
+    this.getPosts();
   }
 
 	signOut () {
 		firebase.auth().signOut();
 	}
+
+  getPosts() {
+    $.get('http://127.0.0.1:1337/posts/all', (data) => {
+      this.setState({
+        posts: data
+      });
+    });
+  }
 
   showMyPosts() {
     this.setState({ myPosts: !this.state.myPosts });

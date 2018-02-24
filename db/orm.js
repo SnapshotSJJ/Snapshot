@@ -72,3 +72,4 @@ User.hasMany(Post);
 module.exports.User = User;
 module.exports.Post = Post;
 module.exports.Comment = Comment;
+module.exports.sequelize = sequelize;
