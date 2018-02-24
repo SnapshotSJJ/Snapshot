@@ -1,4 +1,4 @@
-const { User, Comment, Post } = require('./orm.js');
+const { User, Comment, Post, User_Like, Follow } = require('./orm.js');
 
 /** 
  * Start data
@@ -24,43 +24,53 @@ const usersData = [
 const postsData = [
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
-    user_id: 1
+    user_id: 1,
+    like_count: 3
   },
   {
     img_src: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Falcon_Heavy_cropped.jpg',
-    user_id: 2
+    user_id: 2,
+    like_count: 0
   },
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
-    user_id: 3
+    user_id: 3,
+    like_count: 0
   },
   {
     img_src: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Falcon_Heavy_cropped.jpg',
-    user_id: 4
+    user_id: 4,
+    like_count: 0
   },
   {
     img_src: 'http://i.imgur.com/cNtMFKx.jpg',
-    user_id: 5
+    user_id: 5,
+    like_count: 0
   },
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
-    user_id: 1
+    user_id: 1,
+    like_count: 0
   },
   {
     img_src: 'http://i.imgur.com/cNtMFKx.jpg',
-    user_id: 2
+    user_id: 2,
+    like_count: 0
   },
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
-    user_id: 3
+    user_id: 3,
+    like_count: 0
   },
   {
     img_src: 'http://img2-ak.lst.fm/i/u/arO/98141297cfc1480dc8d65a036457b0d9',
-    user_id: 4
+    user_id: 4,
+    like_count: 0
   },
   {
     img_src: 'http://img2-ak.lst.fm/i/u/arO/98141297cfc1480dc8d65a036457b0d9',
-    user_id: 5
+    user_id: 5,
+    like_count: 0
   }
 ];
 
@@ -142,6 +152,48 @@ const commentsData = [
   }
 ];
 
+const userLikesData = [
+  {
+    user_id: 1,
+    post_id: 1
+  },
+  {
+    user_id: 2,
+    post_id: 1
+  },
+  {
+    user_id: 3,
+    post_id: 1
+  }
+];
+
+const followsData = [
+  {
+    user_id: 1,
+    follow_id: 2
+  },
+  {
+    user_id: 1,
+    follow_id: 3
+  },
+  {
+    user_id: 1,
+    follow_id: 4
+  },
+  {
+    user_id: 2,
+    follow_id: 1
+  },
+  {
+    user_id: 2,
+    follow_id: 4
+  },
+  {
+    user_id: 2,
+    follow_id: 5
+  }
+];
+
 /** 
  * End start data
 */
@@ -153,7 +205,13 @@ User.sync({force: false}).then(() => {
       return createPostsTable();
     })
     .then(() => {
-      createCommentsTable();
+      return createCommentsTable();
+    })
+    .then(() => {
+      return createLikesTable();
+    })
+    .then(() => {
+      return createFollowsTable();
     })
   });
   
@@ -172,5 +230,23 @@ const createCommentsTable = () => {
       .then(() => {
         console.log('updated comments')
       })
+  });
+}
+
+const createLikesTable = () => {
+  User_Like.sync({force: false}).then(() => {
+    return User_Like.bulkCreate(userLikesData)
+      .then(() => {
+        console.log('updated user likes')
+      });
+  });
+}
+
+const createFollowsTable = () => {
+  Follow.sync({force: false}).then(() => {
+    return Follow.bulkCreate(followsData)
+      .then(() => {
+        console.log('updated follows')
+      });
   });
 }

@@ -45,6 +45,7 @@ const Post = sequelize.define('post', {
     autoIncrement: true
   },
   img_src: Sequelize.STRING,
+  like_count: Sequelize.INTEGER
 },
 {
   underscored: true
@@ -62,14 +63,46 @@ const Comment = sequelize.define('comment', {
   underscored: true
 });
 
+const Follow = sequelize.define('follow', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  follow_id: Sequelize.INTEGER
+},
+{
+  underscored: true
+})
+
+const User_Like = sequelize.define('user_like', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  }
+},
+{
+  underscored: true
+})
+
 Comment.belongsTo(Post);
 Comment.belongsTo(User);
 Post.hasMany(Comment);
 User.hasMany(Comment);
 Post.belongsTo(User);
 User.hasMany(Post);
+User.hasMany(Follow);
+Follow.belongsTo(User);
+Post.hasMany(User_Like);
+User.hasMany(User_Like);
+User_Like.belongsTo(User);
+User_Like.belongsTo(Post);
+
 
 module.exports.User = User;
 module.exports.Post = Post;
 module.exports.Comment = Comment;
+module.exports.Follow = Follow;
+module.exports.User_Like = User_Like;
 module.exports.sequelize = sequelize;
