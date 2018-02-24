@@ -1,4 +1,4 @@
-const { User, Post, Comment } = require('../db/orm.js');
+const { sequelize, User, Post, Comment } = require('../db/orm.js');
 
 module.exports = {
 
@@ -30,20 +30,12 @@ module.exports = {
 		// },
 
 		getAllPosts: (req, res) => {
-			User.findAll({
-				include: [
-					{
-						model: Post,
-						include: [
-							{
-								model: Comment
-							}
-						]
-					}
-				]
-			}).then((users) => {
-				res.status(200).send(users);
-			})
+			sequelize.query(`select posts.id, img_src, users.name
+											 from posts inner join users
+											 where users.id=user_id;`, { type: sequelize.QueryTypes.SELECT })
+				.then((posts) => {
+					res.status(200).send(posts);
+				})
 		},
 
 		getFollowersPosts: (req, res) => {
