@@ -1,4 +1,6 @@
+
 const { sequelize, User, Post, Comment } = require('../db/orm.js');
+const fs = require('fs');
 
 module.exports = {
 

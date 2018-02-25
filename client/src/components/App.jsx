@@ -13,9 +13,11 @@ class App extends Component {
       posts: [],
       user: 'carol',
       myPosts: false,
+      toggleUploader: false,
     }
     this.showMyPosts = this.showMyPosts.bind(this);
     this.signOut= this.signOut.bind(this);
+    this.showUploader = this.showUploader.bind(this);
   }
   
   componentDidMount() {
@@ -38,6 +40,11 @@ class App extends Component {
     this.setState({ myPosts: !this.state.myPosts });
   }
 
+  showUploader() {
+    this.setState({ toggleUploader: !this.state.toggleUploader });
+    console.log('this is the updated state: ', this.state.toggleUploader)
+  }
+
   render() {
     return (
       <div>
@@ -48,6 +55,8 @@ class App extends Component {
           user={this.state.user}
           showMyPosts={this.showMyPosts}
           signOut={this.signOut}
+          toggleUploader={this.state.toggleUploader}
+          showUploader={this.showUploader}
         />
       </div>
     );
