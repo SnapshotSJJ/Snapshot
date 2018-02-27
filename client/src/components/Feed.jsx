@@ -7,9 +7,9 @@ const Feed = (props) => {
       <h3>Feed</h3>
       {props.posts.map((post, index) => {
         if (props.myPosts) {
-          return props.user === post.name ? <Post key={index} post={post}/> : null;
+          return props.user === post.name ? <Post key={index} post={post} userId={props.userId}/> : null;
         }
-        return <Post key={index} post={post} />;
+        return <Post key={index} post={post} userId={props.userId} />;
       })}
     </div>
   );

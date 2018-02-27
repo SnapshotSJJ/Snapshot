@@ -45,7 +45,7 @@ const Post = sequelize.define('post', {
     autoIncrement: true
   },
   img_src: Sequelize.STRING,
-  like_count: Sequelize.INTEGER
+  like_count: { type: Sequelize.INTEGER, defaultValue: 0 }
 },
 {
   underscored: true
@@ -69,7 +69,8 @@ const Follow = sequelize.define('follow', {
     primaryKey: true,
     autoIncrement: true
   },
-  follow_id: Sequelize.INTEGER
+  follow_id: Sequelize.INTEGER,
+  accepted: { type: Sequelize.INTEGER, defaultValue: 0 }
 },
 {
   underscored: true
