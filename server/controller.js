@@ -58,11 +58,11 @@ module.exports = {
 		},
 
 		getFollowersPosts: (req, res) => {
-			let username =  req.body.username;
-			let query = `SELECT img_src FROM posts WHERE user_id IN (SELECT id FROM users where name = "${username}")`
+			let userID =  req.params.userID;
+			let query = `SELECT img_src FROM posts WHERE user_id IN (SELECT id FROM users where id="${userID}")`
 
-			Sequelize.query(query, {type: Sequelize.QueryTypes.SELECT}).then( (posts) => {
-				res.send(posts);
+			sequelize.query(query, {type: sequelize.QueryTypes.SELECT}).then( (posts) => {
+				res.status(200).send(posts);
 			});
 		},
 

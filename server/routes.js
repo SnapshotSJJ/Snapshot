@@ -15,9 +15,9 @@ router.get('/posts/all', ctrl.posts.getAllPosts);
 
 router.get('/posts/comments/:postID', ctrl.posts.getAllComments);
 
-router.get('/posts/followers', ctrl.posts.getFollowersPosts);
+router.get('/posts/followers/:userID', ctrl.posts.getFollowersPosts);
 
-router.post('/posts/comment/:postID', ctrl.posts.postSingleComment)
+router.post('/posts/comment', ctrl.posts.postSingleComment)
 
 router.put('/posts/like/:postID', ctrl.posts.likeSinglePost);
 
