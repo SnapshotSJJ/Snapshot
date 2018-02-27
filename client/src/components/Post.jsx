@@ -8,7 +8,8 @@ class Post extends Component {
     this.state = {
       displayMessages: false,
       myComment: '',
-      comments: []
+      comments: [],
+      likes: 0,
     };
     this.expandMessages = this.expandMessages.bind(this);
     this.createComment = this.createComment.bind(this);
@@ -29,6 +30,7 @@ class Post extends Component {
 
   createComment(e) {
     this.setState({ myComment: e.target.value });
+    $.post(`http://127.0.0.1:1337/posts/comment/${this.props.post.id}`)
   }
 
   followUser(reqBody) {
@@ -48,7 +50,7 @@ class Post extends Component {
         <img onClick={this.expandMessages} src={this.props.post.img_src} />
         {
           this.props.userId !== this.props.post.user_id ?
-          <h5>{this.props.post.name} 
+          <h5 onClick={this.props.filterByUser}>{this.props.post.name} 
             <button onClick={this.followUser.bind(null, {user_id: this.props.userId, follow_id: this.props.post.user_id})}>Follow
             </button></h5> :
           <h5>{this.props.post.name}</h5>

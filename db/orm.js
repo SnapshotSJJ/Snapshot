@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('instagram', 'root', 'password', {
+const sequelize = new Sequelize('instagram', 'root', null, {
   host: 'localhost',
   port: 3306,
   dialect: 'mysql',

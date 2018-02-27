@@ -7,6 +7,7 @@ module.exports = {
 	users: {
 
 		followSingleUser: (req, res) => {
+
 			Follow.findOrCreate({where: {
 																		user_id: req.body.user_id,
 																		follow_id: req.body.follow_id}})
@@ -76,7 +77,19 @@ module.exports = {
 		},
 
 		postSingleComment: (req, res) => {
-			console.log('what the heck')
+
+			let username = ''; //req.body.username
+			let postID = req.params.postID; 
+			let userID = 2; //req.body.userID
+			let text =  'hello';
+			
+			Comment.create({
+				text: text,
+				user_id: userID,
+				post_id: postID,
+			}).then( (comment) => {
+					res.send(comment);
+				});
 		},
 
 		likeSinglePost: (req, res) => {
