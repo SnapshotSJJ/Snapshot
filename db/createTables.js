@@ -25,52 +25,62 @@ const postsData = [
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
     user_id: 1,
-    like_count: 3
+    like_count: 3,
+    title: 'Having lots of fun!'
   },
   {
     img_src: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Falcon_Heavy_cropped.jpg',
     user_id: 2,
-    like_count: 0
+    like_count: 0,
+    title: 'wish you were here'
   },
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
     user_id: 3,
-    like_count: 0
+    like_count: 0,
+    title: 'give me likes'
   },
   {
     img_src: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Falcon_Heavy_cropped.jpg',
     user_id: 4,
-    like_count: 0
+    like_count: 0,
+    title: 'cool pic!'
   },
   {
     img_src: 'http://i.imgur.com/cNtMFKx.jpg',
     user_id: 5,
-    like_count: 0
+    like_count: 0,
+    title: 'throwback thursday!'
   },
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
     user_id: 1,
-    like_count: 0
+    like_count: 0,
+    title: 'nice comments only, plz'
   },
   {
     img_src: 'http://i.imgur.com/cNtMFKx.jpg',
     user_id: 2,
-    like_count: 0
+    like_count: 0,
+    title: 'another photo'
   },
   {
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
     user_id: 3,
-    like_count: 0
+    like_count: 0,
+    title: 'this is the best picture!'
   },
   {
     img_src: 'http://img2-ak.lst.fm/i/u/arO/98141297cfc1480dc8d65a036457b0d9',
     user_id: 4,
-    like_count: 0
+    like_count: 0,
+    title: 'don\'t click me'
   },
   {
     img_src: 'http://img2-ak.lst.fm/i/u/arO/98141297cfc1480dc8d65a036457b0d9',
     user_id: 5,
-    like_count: 0
+    like_count: 0,
+    title: 'this is the last one'
   }
 ];
 
