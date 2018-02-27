@@ -22,14 +22,12 @@ class Login extends React.Component {
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(true);
         this.setState({
           signedIn: !!user,
           user: user.displayName
         });
         this.postUser({user: user.displayName});
       } else {
-        console.log(false);
         this.setState({
           signedIn: false,
           user: '',
