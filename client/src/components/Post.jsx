@@ -35,7 +35,11 @@ class Post extends Component {
     return (
       <div>
         <img onClick={this.expandMessages} src={this.props.post.img_src} />
-        <h5>{this.props.post.name}</h5>
+        {
+          this.props.userId !== this.props.post.user_id ?
+          <h5>{this.props.post.name} <button>Follow</button></h5> :
+          <h5>{this.props.post.name}</h5>
+        }
         <Comments comments={this.state.comments}
                   displayMessages={this.state.displayMessages}
                   createComment={this.createComment}/>

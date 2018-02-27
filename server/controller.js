@@ -39,7 +39,7 @@ module.exports = {
 		// },
 
 		getAllPosts: (req, res) => {
-			sequelize.query(`select posts.id, img_src, users.name
+			sequelize.query(`select posts.id, img_src, users.name, user_id
 											 from posts inner join users
 											 where users.id=user_id;`, { type: sequelize.QueryTypes.SELECT })
 				.then((posts) => {
