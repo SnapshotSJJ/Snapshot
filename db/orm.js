@@ -69,7 +69,8 @@ const Follow = sequelize.define('follow', {
     primaryKey: true,
     autoIncrement: true
   },
-  follow_id: Sequelize.INTEGER
+  follow_id: Sequelize.INTEGER,
+  accepted: Sequelize.INTEGER
 },
 {
   underscored: true
