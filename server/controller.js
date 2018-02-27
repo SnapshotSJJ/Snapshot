@@ -17,6 +17,13 @@ module.exports = {
 		acceptNewFollower: (req, res) => {
 			console.log('hey')
 		},
+
+		postUser: (req, res) => {
+			User.findOrCreate({where: {name: req.body.user}})
+				.spread((user, created) => {
+					res.status(201).send(JSON.stringify(user.dataValues.id));
+				})
+		}
 	},
 
 	posts: {
