@@ -1,5 +1,5 @@
 
-const { sequelize, User, Post, Comment } = require('../db/orm.js');
+const { sequelize, User, Post, Comment, Follow } = require('../db/orm.js');
 const fs = require('fs');
 
 module.exports = {
@@ -8,6 +8,13 @@ module.exports = {
 
 		followSingleUser: (req, res) => {
 			console.log('im here')
+
+			let userToFollow = '';
+			let query = ``
+
+			Follow.create({
+
+			});
 		},
 
 		getFollowerList: (req, res) => {
@@ -67,7 +74,19 @@ module.exports = {
 		},
 
 		postSingleComment: (req, res) => {
-			console.log('what the heck')
+
+			let username = ''; //req.body.username
+			let postID = req.params.postID; 
+			let userID = 2; //req.body.userID
+			let text =  'hello';
+			
+			Comment.create({
+				text: text,
+				user_id: userID,
+				post_id: postID,
+			}).then( (comment) => {
+					res.send(comment);
+				});
 		},
 
 		likeSinglePost: (req, res) => {

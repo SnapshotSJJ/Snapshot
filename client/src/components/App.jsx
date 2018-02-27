@@ -19,21 +19,21 @@ class App extends Component {
     this.showUploader = this.showUploader.bind(this);
   }
   
-  componentDidMount() {
-    this.getPosts();
-  }
+  // componentDidMount() {
+  //   this.getPosts();
+  // }
 
 	signOut () {
 		firebase.auth().signOut();
 	}
 
-  getPosts() {
-    $.get('http://127.0.0.1:1337/posts/all', (data) => {
-      this.setState({
-        posts: data
-      });
-    });
-  }
+  // getPosts() {
+  //   $.get('http://127.0.0.1:1337/posts/all', (data) => {
+  //     this.setState({
+  //       posts: data
+  //     });
+  //   });
+  // }
 
   showMyPosts() {
     this.setState({ myPosts: !this.state.myPosts });
@@ -49,7 +49,7 @@ class App extends Component {
       <div>
         <h1>Instagram Clone</h1>
         <Login 
-        	posts={this.state.posts}
+        	// posts={this.state.posts}
           myPosts={this.state.myPosts}
           showMyPosts={this.showMyPosts}
           signOut={this.signOut}
