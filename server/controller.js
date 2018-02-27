@@ -58,7 +58,12 @@ module.exports = {
 		},
 
 		getFollowersPosts: (req, res) => {
-			console.log('test')
+			let userID =  req.params.userID;
+			let query = `SELECT img_src FROM posts WHERE user_id IN (SELECT id FROM users where id="${userID}")`
+
+			sequelize.query(query, {type: sequelize.QueryTypes.SELECT}).then( (posts) => {
+				res.status(200).send(posts);
+			});
 		},
 
 		postSingleComment: (req, res) => {
