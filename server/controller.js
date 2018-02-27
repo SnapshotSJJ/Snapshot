@@ -1,5 +1,5 @@
 
-const { sequelize, User, Post, Comment } = require('../db/orm.js');
+const { sequelize, User, Post, Comment, Follow } = require('../db/orm.js');
 const fs = require('fs');
 
 module.exports = {
@@ -7,7 +7,16 @@ module.exports = {
 	users: {
 
 		followSingleUser: (req, res) => {
-			console.log('im here')
+			Follow.findOrCreate({where: {
+																		user_id: req.body.user_id,
+																		follow_id: req.body.follow_id}})
+				.spread((user, created) => {
+					if (created) {
+						res.status(204).send(JSON.stringify('success!'));
+					} else {
+						res.status(409).send(JSON.stringify('already exists'));
+					}
+				})
 		},
 
 		getFollowerList: (req, res) => {

@@ -9,7 +9,7 @@ const Feed = (props) => {
         if (props.myPosts) {
           return props.user === post.name ? <Post key={index} post={post} userId={props.userId}/> : null;
         }
-        return <Post key={index} post={post} />;
+        return <Post key={index} post={post} userId={props.userId} />;
       })}
     </div>
   );

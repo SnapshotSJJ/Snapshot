@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const ctrl = require('./controller');
 
-router.put('/users/follow/:username', ctrl.users.followSingleUser);
+router.put('/users/follow/:userID', ctrl.users.followSingleUser);
 
 router.get('/users/all', ctrl.users.getFollowerList);
 
