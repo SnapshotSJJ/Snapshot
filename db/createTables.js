@@ -170,27 +170,33 @@ const userLikesData = [
 const followsData = [
   {
     user_id: 1,
-    follow_id: 2
+    follow_id: 2,
+    accepted: 0
   },
   {
     user_id: 1,
-    follow_id: 3
+    follow_id: 3,
+    accepted: 1
   },
   {
     user_id: 1,
-    follow_id: 4
+    follow_id: 4,
+    accepted: 0
   },
   {
     user_id: 2,
-    follow_id: 1
+    follow_id: 1,
+    accepted: 1
   },
   {
     user_id: 2,
-    follow_id: 4
+    follow_id: 4,
+    accepted: 0
   },
   {
     user_id: 2,
-    follow_id: 5
+    follow_id: 5,
+    accepted: 1
   }
 ];
 

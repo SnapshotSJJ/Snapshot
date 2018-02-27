@@ -7,14 +7,17 @@ module.exports = {
 	users: {
 
 		followSingleUser: (req, res) => {
-			console.log('im here')
 
-			let userToFollow = '';
-			let query = ``
-
-			Follow.create({
-
-			});
+			Follow.findOrCreate({where: {
+																		user_id: req.body.user_id,
+																		follow_id: req.body.follow_id}})
+				.spread((user, created) => {
+					if (created) {
+						res.status(204).send(JSON.stringify('success!'));
+					} else {
+						res.status(409).send(JSON.stringify('already exists'));
+					}
+				})
 		},
 
 		getFollowerList: (req, res) => {
@@ -46,7 +49,7 @@ module.exports = {
 		// },
 
 		getAllPosts: (req, res) => {
-			sequelize.query(`select posts.id, img_src, users.name
+			sequelize.query(`select posts.id, img_src, users.name, user_id
 											 from posts inner join users
 											 where users.id=user_id;`, { type: sequelize.QueryTypes.SELECT })
 				.then((posts) => {

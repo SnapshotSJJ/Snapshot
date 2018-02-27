@@ -65,9 +65,6 @@ class Feed extends React.Component {
           }
           return <Post filter={this.filterByUser} key={index} post={post} />;
       })}
-    
-    
-    
     </div>
   );
   }
