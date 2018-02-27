@@ -31,6 +31,7 @@
     "mysql2": "^1.5.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-dropzone": "^4.2.8",
     "react-firebaseui": "^1.1.8",
     "sequelize": "^4.33.4",
     "superagent": "^3.8.2",

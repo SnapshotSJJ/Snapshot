@@ -11,7 +11,6 @@ class App extends Component {
     super();
     this.state = {
       posts: [],
-      user: 'carol',
       myPosts: false,
       toggleUploader: false,
     }
@@ -52,7 +51,6 @@ class App extends Component {
         <Login 
         	posts={this.state.posts}
           myPosts={this.state.myPosts}
-          user={this.state.user}
           showMyPosts={this.showMyPosts}
           signOut={this.signOut}
           toggleUploader={this.state.toggleUploader}

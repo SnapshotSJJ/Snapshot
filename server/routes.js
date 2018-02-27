@@ -7,6 +7,8 @@ router.get('/users/all', ctrl.users.getFollowerList);
 
 router.post('/posts/upload/submit', ctrl.posts.submitNewPost);
 
+router.post('/users', ctrl.users.postUser);
+
 // router.post('/posts/upload/upload', ctrl.posts.storeNewPost);
 
 router.get('/posts/all', ctrl.posts.getAllPosts);
