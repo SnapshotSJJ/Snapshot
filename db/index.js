@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 
 var user = 'root';
-var password = 'password';
+var password = '';
 var db = 'instagram';
 
 var connection = mysql.createConnection({
@@ -19,14 +19,3 @@ connection.connect(function(err) {
   };
   console.log('Now connected to ', db);
 });
-
-/*
-
-here is where we can use: 
-connection.query('CREATE TABLE .....)
-connection.query('INSERT INTO .....)
-connection.query('SELECT * FROM .....)
-
-or we can move that functionality into another controller if we want to be even more modular
-
-*/
