@@ -8,6 +8,7 @@ class FollowRequests extends Component {
     this.state = {
       followRequests: []
     }
+    this.acceptFollowRequest = this.acceptFollowRequest.bind(this);
   }
 
   componentDidMount() {
@@ -19,10 +20,21 @@ class FollowRequests extends Component {
       this.setState({
         followRequests: data
       });
-      console.log('success', data);
     });
   }
 
+  acceptFollowRequest(reqBody) {
+    const self = this;
+
+    $.ajax({
+      url: `http://127.0.0.1:1337/users/accept/${this.props.userId}`,
+      type: 'PUT',
+      data: reqBody,
+      success: function(data) {
+        self.getFollowRequests();
+      }
+    });
+  }
 
   render() {
     return (
@@ -30,8 +42,9 @@ class FollowRequests extends Component {
         {this.state.followRequests.map((request, index) =>
                                         <FollowRequestEntry
                                           name={request.name}
-                                          followId={request.user_id}
+                                          userId={request.user_id}
                                           key={index}
+                                          acceptFollowRequest={this.acceptFollowRequest}
                                         />)}
       </div>
     )
