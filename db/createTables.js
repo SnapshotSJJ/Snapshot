@@ -18,6 +18,9 @@ const usersData = [
   },
   {
     name: "jen"
+  },
+  {
+    name: "Samuel Hong"
   }
 ];
 
@@ -27,6 +30,11 @@ const postsData = [
     user_id: 1,
     like_count: 3,
     title: 'Having lots of fun!'
+  },
+  {
+    img_src: 'https://cdn.geekwire.com/wp-content/uploads/2016/11/161115-starbucks-coffee.jpg',
+    user_id: 6,
+    like_count: 0
   },
   {
     img_src: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Falcon_Heavy_cropped.jpg',
@@ -180,27 +188,33 @@ const userLikesData = [
 const followsData = [
   {
     user_id: 1,
-    follow_id: 2
+    follow_id: 2,
+    accepted: 0
   },
   {
     user_id: 1,
-    follow_id: 3
+    follow_id: 3,
+    accepted: 1
   },
   {
     user_id: 1,
-    follow_id: 4
+    follow_id: 4,
+    accepted: 0
   },
   {
     user_id: 2,
-    follow_id: 1
+    follow_id: 1,
+    accepted: 1
   },
   {
     user_id: 2,
-    follow_id: 4
+    follow_id: 4,
+    accepted: 0
   },
   {
     user_id: 2,
-    follow_id: 5
+    follow_id: 5,
+    accepted: 1
   }
 ];
 

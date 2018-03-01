@@ -1,5 +1,5 @@
 
-const { sequelize, User, Post, Comment } = require('../db/orm.js');
+const { sequelize, User, Post, Comment, Follow } = require('../db/orm.js');
 const fs = require('fs');
 
 module.exports = {
@@ -7,15 +7,39 @@ module.exports = {
 	users: {
 
 		followSingleUser: (req, res) => {
-			console.log('im here')
+
+			Follow.findOrCreate({where: {
+																		user_id: req.body.user_id,
+																		follow_id: req.body.follow_id}})
+				.spread((user, created) => {
+					if (created) {
+						res.status(204).send(JSON.stringify('success!'));
+					} else {
+						res.status(409).send(JSON.stringify('already exists'));
+					}
+				})
 		},
 
 		getFollowerList: (req, res) => {
-			console.log('lol')
+			sequelize.query(`select user_id, users.name from follows join users
+											 where users.id=user_id and follow_id = ${req.params.userID} and accepted=0;`, { type: sequelize.QueryTypes.SELECT })
+				.then((requests) => {
+					res.status(200).send(requests);
+				});
 		},
 
 		acceptNewFollower: (req, res) => {
-			console.log('hey')
+			Follow.update({ accepted: 1 },
+										{ where: 
+										{ user_id: req.body.user_id,
+											follow_id: req.params.userID }})
+				.then((request) => {
+					if (request) {
+						res.status(204).send(JSON.stringify('success!'));
+					} else {
+						res.status(404).send(JSON.stringify('resource not found'));
+					}
+				})
 		},
 
 		postUser: (req, res) => {
@@ -53,7 +77,7 @@ module.exports = {
 		// },
 
 		getAllPosts: (req, res) => {
-			sequelize.query(`select posts.id, img_src, users.name
+			sequelize.query(`select posts.id, img_src, users.name, user_id
 											 from posts inner join users
 											 where users.id=user_id;`, { type: sequelize.QueryTypes.SELECT })
 				.then((posts) => {
@@ -81,7 +105,19 @@ module.exports = {
 		},
 
 		postSingleComment: (req, res) => {
-			console.log('what the heck')
+
+			let username = ''; //req.body.username
+			let postID = req.params.postID; 
+			let userID = 2; //req.body.userID
+			let text =  'hello';
+			
+			Comment.create({
+				text: text,
+				user_id: userID,
+				post_id: postID,
+			}).then( (comment) => {
+					res.send(comment);
+				});
 		},
 
 		likeSinglePost: (req, res) => {

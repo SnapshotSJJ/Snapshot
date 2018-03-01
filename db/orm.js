@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('instagram', 'root', 'Orange05', {
+
+const sequelize = new Sequelize('instagram', 'root', null, {
   host: 'localhost',
   port: 3306,
   dialect: 'mysql',
@@ -45,8 +46,8 @@ const Post = sequelize.define('post', {
     autoIncrement: true
   },
   img_src: Sequelize.STRING,
-  like_count: Sequelize.INTEGER,
   title: Sequelize.STRING,
+  like_count: { type: Sequelize.INTEGER, defaultValue: 0 }
 },
 {
   underscored: true
@@ -70,7 +71,8 @@ const Follow = sequelize.define('follow', {
     primaryKey: true,
     autoIncrement: true
   },
-  follow_id: Sequelize.INTEGER
+  follow_id: Sequelize.INTEGER,
+  accepted: { type: Sequelize.INTEGER, defaultValue: 0 }
 },
 {
   underscored: true
