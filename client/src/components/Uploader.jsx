@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import $ from 'jquery';
 import request from 'superagent';
+import firebase from 'firebase';
 
 const CLOUDINARY_UPLOAD_PRESET = 'vfitlscn';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/hrla20/auto/upload';
@@ -16,6 +17,7 @@ class Uploader extends React.Component {
     this.onDrop = this.onDrop.bind(this)
     this.handleImageUpload = this.handleImageUpload.bind(this)
     this.updateInput = this.updateInput.bind(this)
+    this.submitPost = this.submitPost.bind(this)
   }
   
   onDrop(files, rejectedFiles) {
@@ -46,9 +48,23 @@ class Uploader extends React.Component {
           uploadedFileCloudinaryUrl: res.body.secure_url
         });
         console.log('this is the state', this.state);
+        // insert user_id, url, title
       }
     })
 
+  }
+
+  submitPost() {
+    console.log('this is the firebase user object name: ', firebase.auth().currentUser.displayName)
+    console.log('this is the post info: ', this.state.uploadedFileCloudinaryUrl, this.state.title, firebase.auth().currentUser.uid)
+    $.post('http://127.0.0.1:1337/posts/upload/submit', {
+      img_src: this.state.uploadedFileCloudinaryUrl,
+      like_count: 0,
+      title: this.state.title,
+      name: firebase.auth().currentUser.displayName
+    }, () => {
+      console.log(this.state.title, ' successfully stored to database!')
+    })
   }
 
   updateInput(event) {

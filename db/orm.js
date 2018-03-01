@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 
+
 const sequelize = new Sequelize('instagram', 'root', null, {
   host: 'localhost',
   port: 3306,
@@ -45,6 +46,7 @@ const Post = sequelize.define('post', {
     autoIncrement: true
   },
   img_src: Sequelize.STRING,
+  title: Sequelize.STRING,
   like_count: { type: Sequelize.INTEGER, defaultValue: 0 }
 },
 {

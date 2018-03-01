@@ -53,7 +53,21 @@ module.exports = {
 	posts: {
 
 		submitNewPost: (req, res) => {
-			console.log('what')
+			// console.log('inside submitNewPost: ', req.body)
+			let username =  req.body.name;
+			let query = `SELECT id FROM users WHERE name="${username}"`
+
+			sequelize.query(query, {type: sequelize.QueryTypes.SELECT}).then(
+				(id) => {
+					Post.create({
+						img_src: req.body.img_src,
+						like_count: req.body.like_count,
+						title: req.body.title,
+						user_id: id[0].id
+					}).then(() => {console.log('Successfully stored post to database!')})
+				}
+			)
+			
 		},
 
 
