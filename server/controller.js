@@ -21,11 +21,25 @@ module.exports = {
 		},
 
 		getFollowerList: (req, res) => {
-			console.log('lol')
+			sequelize.query(`select user_id, users.name from follows join users
+											 where users.id=user_id and follow_id = ${req.params.userID} and accepted=0;`, { type: sequelize.QueryTypes.SELECT })
+				.then((requests) => {
+					res.status(200).send(requests);
+				});
 		},
 
 		acceptNewFollower: (req, res) => {
-			console.log('hey')
+			Follow.update({ accepted: 1 },
+										{ where: 
+										{ user_id: req.body.user_id,
+											follow_id: req.params.userID }})
+				.then((request) => {
+					if (request) {
+						res.status(204).send(JSON.stringify('success!'));
+					} else {
+						res.status(404).send(JSON.stringify('resource not found'));
+					}
+				})
 		},
 
 		postUser: (req, res) => {

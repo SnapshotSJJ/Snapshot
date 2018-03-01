@@ -49,7 +49,7 @@ class Post extends Component {
       <div>
         <img onClick={this.expandMessages} src={this.props.post.img_src} />
         {
-          this.props.userId !== this.props.post.user_id ?
+          Number(this.props.userId) !== this.props.post.user_id ?
           <h5 onClick={this.props.filterByUser}>{this.props.post.name} 
             <button onClick={this.followUser.bind(null, {user_id: this.props.userId, follow_id: this.props.post.user_id})}>Follow
             </button></h5> :

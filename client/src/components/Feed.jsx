@@ -61,9 +61,9 @@ class Feed extends React.Component {
       <br />
         {this.state.posts.map((post, index) => {
           if (this.props.myPosts) {
-            return this.props.user === post.name ? <Post filter={this.filterByUser} key={index} post={post}/> : null;
+            return this.props.user === post.name ? <Post filter={this.filterByUser} key={index} post={post} userId={this.userId}/> : null;
           }
-          return <Post filter={this.filterByUser} key={index} post={post} />;
+          return <Post filter={this.filterByUser} key={index} post={post} userId={this.props.userId}/>;
       })}
     </div>
   );

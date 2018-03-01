@@ -3,11 +3,13 @@ const ctrl = require('./controller');
 
 router.put('/users/follow/:userID', ctrl.users.followSingleUser);
 
-router.get('/users/all', ctrl.users.getFollowerList);
+router.get('/users/:userID/follows', ctrl.users.getFollowerList);
 
 router.post('/posts/upload/submit', ctrl.posts.submitNewPost);
 
 router.post('/users', ctrl.users.postUser);
+
+router.put('/users/accept/:userID', ctrl.users.acceptNewFollower);
 
 // router.post('/posts/upload/upload', ctrl.posts.storeNewPost);
 
@@ -21,7 +23,6 @@ router.post('/posts/comment', ctrl.posts.postSingleComment)
 
 router.put('/posts/like/:postID', ctrl.posts.likeSinglePost);
 
-router.put('/users/accept/:username', ctrl.users.acceptNewFollower);
 
 
 module.exports = router;
