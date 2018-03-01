@@ -21,7 +21,11 @@ module.exports = {
 		},
 
 		getFollowerList: (req, res) => {
-			console.log('lol')
+			sequelize.query(`select user_id from follows
+											 where follow_id = ${req.params.userID} and accepted=0;`, { type: sequelize.QueryTypes.SELECT })
+				.then((requests) => {
+					res.status(200).send(requests);
+				});
 		},
 
 		acceptNewFollower: (req, res) => {

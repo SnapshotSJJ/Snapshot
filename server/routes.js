@@ -3,7 +3,7 @@ const ctrl = require('./controller');
 
 router.put('/users/follow/:userID', ctrl.users.followSingleUser);
 
-router.get('/users/all', ctrl.users.getFollowerList);
+router.get('/users/:userID/follows', ctrl.users.getFollowerList);
 
 router.post('/posts/upload/submit', ctrl.posts.submitNewPost);
 
