@@ -9,6 +9,8 @@ router.post('/posts/upload/submit', ctrl.posts.submitNewPost);
 
 router.post('/users', ctrl.users.postUser);
 
+router.put('/users/accept/:userID', ctrl.users.acceptNewFollower);
+
 // router.post('/posts/upload/upload', ctrl.posts.storeNewPost);
 
 router.get('/posts/all', ctrl.posts.getAllPosts);
@@ -21,7 +23,6 @@ router.post('/posts/comment', ctrl.posts.postSingleComment)
 
 router.put('/posts/like/:postID', ctrl.posts.likeSinglePost);
 
-router.put('/users/accept/:username', ctrl.users.acceptNewFollower);
 
 
 module.exports = router;

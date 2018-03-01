@@ -29,7 +29,17 @@ module.exports = {
 		},
 
 		acceptNewFollower: (req, res) => {
-			console.log('hey')
+			Follow.update({ accepted: 1 },
+										{ where: 
+										{ user_id: req.body.user_id,
+											follow_id: req.params.userID }})
+				.then((request) => {
+					if (request) {
+						res.status(204).send('success!');
+					} else {
+						res.status(404).send('resource not found');
+					}
+				})
 		},
 
 		postUser: (req, res) => {
