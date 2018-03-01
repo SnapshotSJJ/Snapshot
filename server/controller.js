@@ -35,9 +35,9 @@ module.exports = {
 											follow_id: req.params.userID }})
 				.then((request) => {
 					if (request) {
-						res.status(204).send('success!');
+						res.status(204).send(JSON.stringify('success!'));
 					} else {
-						res.status(404).send('resource not found');
+						res.status(404).send(JSON.stringify('resource not found'));
 					}
 				})
 		},
