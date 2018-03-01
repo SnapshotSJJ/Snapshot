@@ -18,6 +18,9 @@ const usersData = [
   },
   {
     name: "jen"
+  },
+  {
+    name: "Samuel Hong"
   }
 ];
 
@@ -26,6 +29,11 @@ const postsData = [
     img_src: 'https://vignette.wikia.nocookie.net/donthugme/images/d/d7/DHMIS_Globe.jpg/revision/latest?cb=20160105194405',
     user_id: 1,
     like_count: 3
+  },
+  {
+    img_src: 'https://cdn.geekwire.com/wp-content/uploads/2016/11/161115-starbucks-coffee.jpg',
+    user_id: 6,
+    like_count: 0
   },
   {
     img_src: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Falcon_Heavy_cropped.jpg',
