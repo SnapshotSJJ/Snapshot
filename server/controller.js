@@ -21,8 +21,8 @@ module.exports = {
 		},
 
 		getFollowerList: (req, res) => {
-			sequelize.query(`select user_id from follows
-											 where follow_id = ${req.params.userID} and accepted=0;`, { type: sequelize.QueryTypes.SELECT })
+			sequelize.query(`select user_id, users.name from follows join users
+											 where users.id=user_id and follow_id = ${req.params.userID} and accepted=0;`, { type: sequelize.QueryTypes.SELECT })
 				.then((requests) => {
 					res.status(200).send(requests);
 				});
