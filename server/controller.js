@@ -1,5 +1,5 @@
 
-const { sequelize, User, Post, Comment, Follow } = require('../db/orm.js');
+const { sequelize, User, Post, Comment, Follow, User_Like } = require('../db/orm.js');
 const fs = require('fs');
 
 module.exports = {
@@ -121,7 +121,22 @@ module.exports = {
 		},
 
 		likeSinglePost: (req, res) => {
-			console.log('fun town')
+			// Check to see if user already liked post
+			User_Like.findOrCreate({where: {user_id: req.body.user_id, post_id: req.params.postID}})
+				.spread((_, created) => {
+					if (!created) {
+						res.status(409).send(JSON.stringify('Already liked'))
+					} else {
+						// Update post likes by one
+						Post.findById(Number(req.params.postID))
+							.then((post) => {
+								return post.increment('like_count', { by: 1 })
+							})
+							.then(() => {
+								res.status(201).send(JSON.stringify('Success!'))
+							});
+					}
+				});
 		},
 	}
 }
