@@ -39,7 +39,19 @@ class Post extends Component {
       type: 'PUT',
       data: reqBody,
       success: function(data) {
-        console.log('success!');
+        console.log(data);
+      }
+    });
+  }
+
+  likePost(reqBody, getPosts) {
+    $.ajax({
+      url: `http://127.0.0.1:1337/posts/like/${reqBody.post_id}`,
+      type: 'PUT',
+      data: reqBody,
+      success: function(data) {
+        console.log(data);
+        getPosts();
       }
     });
   }
@@ -50,11 +62,19 @@ class Post extends Component {
         <img onClick={this.expandMessages} src={this.props.post.img_src} />
         {
           Number(this.props.userId) !== this.props.post.user_id ?
-          <h5 onClick={this.props.filterByUser}>{this.props.post.name} 
-            <button onClick={this.followUser.bind(null, {user_id: this.props.userId, follow_id: this.props.post.user_id})}>Follow
-            </button></h5> :
+          <h5 onClick={this.props.filterByUser}>{this.props.post.name}
+            {/* Follow button */}
+            <button onClick={this.followUser.bind(null, {user_id: this.props.userId, follow_id: this.props.post.user_id})}>
+              Follow
+            </button>
+            {/* Like button */}
+            <button onClick={this.likePost.bind(null, {user_id: this.props.userId, post_id: this.props.post.id}, this.props.getPosts)}>
+              Like
+            </button>
+          </h5> :
           <h5>{this.props.post.name}</h5>
         }
+        <p>Likes: {this.props.post.like_count}</p>
         <Comments comments={this.state.comments}
                   displayMessages={this.state.displayMessages}
                   createComment={this.createComment}/>
