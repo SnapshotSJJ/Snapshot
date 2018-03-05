@@ -7,7 +7,7 @@ const Comments = (props) => {
         {props.comments.map((comment, index) => <li key={index}>{comment.name}: {comment.text}</li>)}
         <div>
           <input onChange={props.createComment} />
-          <button>Submit</button>
+          <button onClick={props.postComment.bind(null, {userId: props.userId, postId: props.postId})}>Submit</button>
         </div>
       </div>
     );

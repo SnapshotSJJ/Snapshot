@@ -13,6 +13,7 @@ class Post extends Component {
     };
     this.expandMessages = this.expandMessages.bind(this);
     this.createComment = this.createComment.bind(this);
+    this.postComment = this.postComment.bind(this);
   }
 
   expandMessages() {
@@ -30,7 +31,18 @@ class Post extends Component {
 
   createComment(e) {
     this.setState({ myComment: e.target.value });
-    $.post(`http://127.0.0.1:1337/posts/comment/${this.props.post.id}`)
+  }
+  
+  postComment(reqBody) {
+    $.post(`http://127.0.0.1:1337/posts/comment`,
+            {
+              text: this.state.myComment,
+              userID: reqBody.userId,
+              postID: reqBody.postId
+            },
+            (data) => {
+      this.getComments();
+    });
   }
 
   followUser(reqBody) {
@@ -79,7 +91,10 @@ class Post extends Component {
         <p>Likes: {this.props.post.like_count}</p>
         <Comments comments={this.state.comments}
                   displayMessages={this.state.displayMessages}
-                  createComment={this.createComment}/>
+                  createComment={this.createComment}
+                  userId={this.props.userId}
+                  postId={this.props.post.id}
+                  postComment={this.postComment}/>
       </div>
     );
   }

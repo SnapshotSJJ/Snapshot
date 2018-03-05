@@ -16,10 +16,13 @@ class Login extends React.Component {
       userId: '',
       showFollows: false,
       showNotifications: false,
+
       showFolloweesPosts: false,
       followeesPosts: [],
+      posts: []
 		};
     firebase.initializeApp(config);
+    this.getPosts = this.getPosts.bind(this);
     this.showFollowsButton = this.showFollowsButton.bind(this);
     this.showNotificationsButton = this.showNotificationsButton.bind(this);
     this.showFolloweesPostsButton = this.showFolloweesPostsButton.bind(this);
@@ -68,6 +71,14 @@ class Login extends React.Component {
       });
     });
   }
+        
+  getPosts() {
+    $.get('http://127.0.0.1:1337/posts/all', (data) => {
+      this.setState({
+        posts: data
+      });
+    });
+  }
 
 	render() {
 
@@ -87,10 +98,8 @@ class Login extends React.Component {
     }
     return (
       <div>
-        <h1>My App</h1>
         <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
         <Navbar 
-          showMyPosts={this.props.showMyPosts}
           signOut={this.props.signOut}
           showUploader={this.props.showUploader}
           toggleUploader={this.props.toggleUploader}
@@ -107,6 +116,8 @@ class Login extends React.Component {
           showNotifications={this.state.showNotifications}
           showFolloweesPosts={this.state.showFolloweesPosts}
           followeesPosts={this.state.followeesPosts}
+          getPosts={this.getPosts}
+          posts={this.state.posts}
         />
       </div>
     );

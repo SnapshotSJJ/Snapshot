@@ -12,10 +12,8 @@ class App extends Component {
     super();
     this.state = {
       posts: [],
-      myPosts: false,
       toggleUploader: false,
     }
-    this.showMyPosts = this.showMyPosts.bind(this);
     this.signOut= this.signOut.bind(this);
     this.showUploader = this.showUploader.bind(this);
   }
@@ -23,10 +21,6 @@ class App extends Component {
 	signOut () {
 		firebase.auth().signOut();
 	}
-
-  showMyPosts() {
-    this.setState({ myPosts: !this.state.myPosts });
-  }
 
   showUploader() {
     this.setState({ toggleUploader: !this.state.toggleUploader });
@@ -41,8 +35,6 @@ class App extends Component {
             <div >
               <div>
                 <Login 
-                  myPosts={this.state.myPosts}
-                  showMyPosts={this.showMyPosts}
                   signOut={this.signOut}
                   toggleUploader={this.state.toggleUploader}
                   showUploader={this.showUploader}
