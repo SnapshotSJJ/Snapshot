@@ -15,9 +15,11 @@ class Login extends React.Component {
       user: '',
       userId: '',
       showFollows: false,
-      showNotifications: false
+      showNotifications: false,
+      posts: []
 		};
     firebase.initializeApp(config);
+    this.getPosts = this.getPosts.bind(this);
     this.showFollowsButton = this.showFollowsButton.bind(this);
     this.showNotificationsButton = this.showNotificationsButton.bind(this);
 	}
@@ -57,6 +59,14 @@ class Login extends React.Component {
     this.setState({showFollows: !this.state.showFollows});
   }
 
+  getPosts() {
+    $.get('http://127.0.0.1:1337/posts/all', (data) => {
+      this.setState({
+        posts: data
+      });
+    });
+  }
+
 	render() {
     let uploader;
     if(this.props.toggleUploader) {
@@ -90,6 +100,8 @@ class Login extends React.Component {
           user={this.state.user}
           showFollows={this.state.showFollows}
           showNotifications={this.state.showNotifications}
+          getPosts={this.getPosts}
+          posts={this.state.posts}
         />
       </div>
     );
