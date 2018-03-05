@@ -79,7 +79,7 @@ module.exports = {
 		getAllPosts: (req, res) => {
 			sequelize.query(`select posts.id, img_src, users.name, user_id, like_count
 											 from posts inner join users
-											 where users.id=user_id;`, { type: sequelize.QueryTypes.SELECT })
+											 where users.id=user_id order by id desc;`, { type: sequelize.QueryTypes.SELECT })
 				.then((posts) => {
 					res.status(200).send(posts);
 				})
