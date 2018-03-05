@@ -20,12 +20,13 @@ class Notifications extends Component {
       this.setState({
         acceptedRequests: data
       });
+      console.log(data);
     });
   }
 
   closeAccepted(reqBody) {
     const self = this;
-
+    console.log(this.props.userId, reqBody);
     $.ajax({
       url: `http://127.0.0.1:1337/users/accepted/${this.props.userId}`,
       type: 'PUT',
@@ -44,6 +45,7 @@ class Notifications extends Component {
                                         <NotificationsEntry
                                           name={notification.name}
                                           userId={notification.user_id}
+                                          followId={notification.follow_id}
                                           key={index}
                                           closeAccepted={this.closeAccepted}
                                         />)}

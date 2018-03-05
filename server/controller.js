@@ -39,7 +39,7 @@ module.exports = {
 		acceptNewFollower: (req, res) => {
 			Follow.update({ accepted: 1 },
 										{ where: 
-										{ user_id: req.body.user_id,
+										{ user_id: req.body.follow_id,
 											follow_id: req.params.userID }})
 				.then((request) => {
 					if (request) {
@@ -53,8 +53,8 @@ module.exports = {
 		acceptedFollower: (req, res) => {
 			Follow.update({ seen: 1 },
 										{ where: 
-										{ user_id: req.body.user_id,
-											follow_id: req.params.userID }})
+										{ user_id: req.params.userID,
+											follow_id: req.body.follow_id }})
 				.then((request) => {
 					if (request) {
 						res.status(204).send(JSON.stringify('success!'));
