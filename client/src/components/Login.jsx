@@ -3,9 +3,8 @@ import { config, uiConfig } from '../firebase/firebase.js';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import Navbar from './Navbar.jsx';
-import Feed from './Feed.jsx';
 import Uploader from './Uploader.jsx';
-import FollowRequests from './FollowRequests.jsx';
+import Routes from './Routes.jsx';
 import $ from 'jquery';
 
 class Login extends React.Component {
@@ -15,13 +14,11 @@ class Login extends React.Component {
       signedIn: false,
       user: '',
       userId: '',
-      showFollows: false,
-      posts: []
+      showFollows: false
 		};
     firebase.initializeApp(config);
     this.showFollowsButton = this.showFollowsButton.bind(this);
-    this.getPosts = this.getPosts.bind(this);
-	}	
+	}
 
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
@@ -41,10 +38,6 @@ class Login extends React.Component {
     });
 	}
 
-  showFollowsButton() {
-    this.setState({showFollows: !this.state.showFollows});
-  }
-
   postUser(reqBody) {
     $.post(`http://127.0.0.1:1337/users`, reqBody, (data) => {
       this.setState({
@@ -53,12 +46,8 @@ class Login extends React.Component {
     });
   }
 
-  getPosts() {
-    $.get('http://127.0.0.1:1337/posts/all', (data) => {
-      this.setState({
-        posts: data
-      });
-    });
+  showFollowsButton() {
+    this.setState({showFollows: !this.state.showFollows});
   }
 
 	render() {
@@ -91,11 +80,9 @@ class Login extends React.Component {
         {uploader}
         {
           this.state.showFollows ? <FollowRequests userId={this.state.userId}/> :
-            <Feed
+            <Routes
               userId={this.state.userId}
               user={this.state.user}
-              posts={this.state.posts}
-              getPosts={this.getPosts}
             />
         }
       </div>
