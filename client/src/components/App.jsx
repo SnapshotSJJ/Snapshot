@@ -38,14 +38,17 @@ class App extends Component {
       <Grid>
         <Row>
           <Col xs={12}>
-            <h1 className="text-center title">Instagram Clone</h1>
-            <Login 
-              myPosts={this.state.myPosts}
-              showMyPosts={this.showMyPosts}
-              signOut={this.signOut}
-              toggleUploader={this.state.toggleUploader}
-              showUploader={this.showUploader}
-            />
+            <div >
+              <div>
+                <Login 
+                  myPosts={this.state.myPosts}
+                  showMyPosts={this.showMyPosts}
+                  signOut={this.signOut}
+                  toggleUploader={this.state.toggleUploader}
+                  showUploader={this.showUploader}
+                />
+              </div>
+            </div>
           </Col>
         </Row>
       </Grid>
