@@ -15,11 +15,14 @@ class Login extends React.Component {
       user: '',
       userId: '',
       showFollows: false,
-      showNotifications: false
+      showNotifications: false,
+      showFolloweesPosts: false,
+      followeesPosts: [],
 		};
     firebase.initializeApp(config);
     this.showFollowsButton = this.showFollowsButton.bind(this);
     this.showNotificationsButton = this.showNotificationsButton.bind(this);
+    this.showFolloweesPostsButton = this.showFolloweesPostsButton.bind(this);
 	}
 
 	componentDidMount() {
@@ -57,7 +60,17 @@ class Login extends React.Component {
     this.setState({showFollows: !this.state.showFollows});
   }
 
+  showFolloweesPostsButton() {
+    this.setState({ showFolloweesPosts: !this.state.showFolloweesPosts });
+    $.get(`http://127.0.0.1:1337/posts/followees/${this.state.userId}`,  (data) => {
+      this.setState({
+        followeesPosts: data
+      });
+    });
+  }
+
 	render() {
+
     let uploader;
     if(this.props.toggleUploader) {
       uploader = <Uploader getPosts={this.getPosts} />;
@@ -84,6 +97,7 @@ class Login extends React.Component {
           user={this.state.user}
           showFollowsButton={this.showFollowsButton}
           showNotificationsButton={this.showNotificationsButton}
+          showFolloweesPostsButton={this.showFolloweesPostsButton}
         />
         {uploader}
         <Routes
@@ -91,6 +105,8 @@ class Login extends React.Component {
           user={this.state.user}
           showFollows={this.state.showFollows}
           showNotifications={this.state.showNotifications}
+          showFolloweesPosts={this.state.showFolloweesPosts}
+          followeesPosts={this.state.followeesPosts}
         />
       </div>
     );
