@@ -78,13 +78,10 @@ class Login extends React.Component {
           showFollowsButton={this.showFollowsButton}
         />
         {uploader}
-        {
-          this.state.showFollows ? <FollowRequests userId={this.state.userId}/> :
-            <Routes
-              userId={this.state.userId}
-              user={this.state.user}
-            />
-        }
+        <Routes
+          userId={this.state.userId}
+          user={this.state.user}
+        />
       </div>
     );
 	}
