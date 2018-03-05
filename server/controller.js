@@ -143,7 +143,7 @@ module.exports = {
 			let postID = req.body.postID; 
 			let userID = req.body.userID;
 			let text =  req.body.text;
-			
+			console.log('test', postID, userID, text);
 			Comment.create({
 				text: text,
 				user_id: userID,
