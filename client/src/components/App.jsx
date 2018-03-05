@@ -38,7 +38,7 @@ class App extends Component {
       <Grid>
         <Row>
           <Col xs={12}>
-            <div className="col-lg-6 col-lg-offset-6">
+            <div >
               <div>
                 <Login 
                   myPosts={this.state.myPosts}
