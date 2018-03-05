@@ -6,7 +6,6 @@ class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
       filterUserID: 'hi',
       filterUserInput: '',
     };
@@ -16,7 +15,7 @@ class Feed extends React.Component {
   }
 
   componentDidMount() {
-    this.getPosts();
+    this.props.getPosts();
   }
 
   // Filter by clicking on username button/link
@@ -51,11 +50,11 @@ class Feed extends React.Component {
       <button onClick={this.filterUsers}>Filter</button>
       <br />
       <br />
-        {this.state.posts.map((post, index) => {
+        {this.props.posts.map((post, index) => {
           if (this.props.myPosts) {
-            return this.props.user === post.name ? <Post filter={this.filterByUser} key={index} post={post} userId={this.userId} getPosts={this.getPosts}/> : null;
+            return this.props.user === post.name ? <Post filter={this.filterByUser} key={index} post={post} userId={this.userId} getPosts={this.props.getPosts}/> : null;
           }
-          return <Post filter={this.filterByUser} key={index} post={post} userId={this.props.userId} getPosts={this.getPosts}/>;
+          return <Post filter={this.filterByUser} key={index} post={post} userId={this.props.userId} getPosts={this.props.getPosts}/>;
       })}
     </div>
   );

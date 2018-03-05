@@ -15,7 +15,8 @@ class Login extends React.Component {
       signedIn: false,
       user: '',
       userId: '',
-      showFollows: false
+      showFollows: false,
+      posts: []
 		};
     firebase.initializeApp(config);
     this.showFollowsButton = this.showFollowsButton.bind(this);
@@ -70,7 +71,7 @@ class Login extends React.Component {
 		if (!this.state.signedIn) {
       return (
         <div>
-          <h1 class="text-center">Sign In</h1>
+          <h1 className="text-center title">Sign In</h1>
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
         </div>
       );
@@ -93,8 +94,7 @@ class Login extends React.Component {
             <Feed
               userId={this.state.userId}
               user={this.state.user}
-              posts={this.props.posts}
-              myPosts={this.props.myPosts}
+              posts={this.state.posts}
               getPosts={this.getPosts}
             />
         }

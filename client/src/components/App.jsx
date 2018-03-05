@@ -38,7 +38,7 @@ class App extends Component {
       <Grid>
         <Row>
           <Col xs={12}>
-            <h1 class="text-center">Instagram Clone</h1>
+            <h1 className="text-center title">Instagram Clone</h1>
             <Login 
               myPosts={this.state.myPosts}
               showMyPosts={this.showMyPosts}
