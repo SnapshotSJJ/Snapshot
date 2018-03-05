@@ -137,11 +137,13 @@ module.exports = {
 				.spread((_, created) => {
 					if (!created) {
 						res.status(409).send(JSON.stringify('Already liked'))
+						console.log(false);
 					} else {
 						// Update post likes by one
 						Post.findById(Number(req.params.postID))
 							.then((post) => {
 								return post.increment('like_count', { by: 1 })
+								console.log(true);
 							})
 							.then(() => {
 								res.status(201).send(JSON.stringify('Success!'))

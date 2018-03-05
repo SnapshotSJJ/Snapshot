@@ -27,7 +27,7 @@ class Routes extends Component {
   render() {
     return (
       <div>
-        <Feed posts={this.state.posts} getPosts={this.getPosts} />
+        <Feed posts={this.state.posts} getPosts={this.getPosts} userId={this.props.userId} />
       </div>
     );
   }
