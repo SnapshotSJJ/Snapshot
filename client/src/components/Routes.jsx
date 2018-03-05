@@ -7,22 +7,10 @@ import $ from 'jquery';
 class Routes extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      posts: []
-    }
-    this.getPosts = this.getPosts.bind(this);
   }
 
   componentDidMount() {
-    this.getPosts();
-  }
-
-  getPosts() {
-    $.get('http://127.0.0.1:1337/posts/all', (data) => {
-      this.setState({
-        posts: data
-      });
-    });
+    this.props.getPosts();
   }
   
   render() {
@@ -41,7 +29,7 @@ class Routes extends Component {
     }
     return (
       <div>
-        <Feed posts={this.state.posts} getPosts={this.getPosts} userId={this.props.userId} />
+        <Feed posts={this.props.posts} getPosts={this.props.getPosts} userId={this.props.userId} />
       </div>
     );
   }
