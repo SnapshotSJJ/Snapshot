@@ -19,6 +19,7 @@ class Login extends React.Component {
 		};
     firebase.initializeApp(config);
     this.showFollowsButton = this.showFollowsButton.bind(this);
+    this.getPosts = this.getPosts.bind(this);
 	}	
 
 	componentDidMount() {
@@ -51,6 +52,14 @@ class Login extends React.Component {
     });
   }
 
+  getPosts() {
+    $.get('http://127.0.0.1:1337/posts/all', (data) => {
+      this.setState({
+        posts: data
+      });
+    });
+  }
+
 	render() {
     let uploader;
     if(this.props.toggleUploader) {
@@ -61,8 +70,7 @@ class Login extends React.Component {
 		if (!this.state.signedIn) {
       return (
         <div>
-          <h1>My App</h1>
-          <p>Please sign-in:</p>
+          <h1 class="text-center">Sign In</h1>
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
         </div>
       );
@@ -87,6 +95,7 @@ class Login extends React.Component {
               user={this.state.user}
               posts={this.props.posts}
               myPosts={this.props.myPosts}
+              getPosts={this.getPosts}
             />
         }
       </div>

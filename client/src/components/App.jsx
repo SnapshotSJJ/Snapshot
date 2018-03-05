@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import Feed from './Feed.jsx';
 import postData from '../../../dummydata.json';
 import $ from 'jquery';
+import {Bootstrap, Grid, Row, Col} from 'react-bootstrap';
 
 class App extends Component {
   constructor() {
@@ -34,16 +35,20 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Instagram Clone</h1>
-        <Login 
-          myPosts={this.state.myPosts}
-          showMyPosts={this.showMyPosts}
-          signOut={this.signOut}
-          toggleUploader={this.state.toggleUploader}
-          showUploader={this.showUploader}
-        />
-      </div>
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <h1 class="text-center">Instagram Clone</h1>
+            <Login 
+              myPosts={this.state.myPosts}
+              showMyPosts={this.showMyPosts}
+              signOut={this.signOut}
+              toggleUploader={this.state.toggleUploader}
+              showUploader={this.showUploader}
+            />
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

@@ -13,19 +13,10 @@ class Feed extends React.Component {
     this.filterByUser = this.filterByUser.bind(this);
     this.handleUserFilterInput = this.handleUserFilterInput.bind(this);
     this.filterUsers = this.filterUsers.bind(this);
-    this.getPosts = this.getPosts.bind(this);
   }
 
   componentDidMount() {
     this.getPosts();
-  }
-
-  getPosts() {
-    $.get('http://127.0.0.1:1337/posts/all', (data) => {
-      this.setState({
-        posts: data
-      });
-    });
   }
 
   // Filter by clicking on username button/link
