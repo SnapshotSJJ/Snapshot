@@ -28,8 +28,30 @@ module.exports = {
 				});
 		},
 
+		getAcceptedList: (req, res) => {
+			sequelize.query(`select follow_id, users.name from follows join users
+											 where users.id=follow_id and user_id = ${req.params.userID} and accepted=1 and seen=0;`, { type: sequelize.QueryTypes.SELECT })
+				.then((requests) => {
+					res.status(200).send(requests);
+				});
+		},
+
 		acceptNewFollower: (req, res) => {
 			Follow.update({ accepted: 1 },
+										{ where: 
+										{ user_id: req.body.user_id,
+											follow_id: req.params.userID }})
+				.then((request) => {
+					if (request) {
+						res.status(204).send(JSON.stringify('success!'));
+					} else {
+						res.status(404).send(JSON.stringify('resource not found'));
+					}
+				})
+		},
+
+		acceptedFollower: (req, res) => {
+			Follow.update({ seen: 1 },
 										{ where: 
 										{ user_id: req.body.user_id,
 											follow_id: req.params.userID }})

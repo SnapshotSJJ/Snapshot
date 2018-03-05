@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Feed from './Feed.jsx';
 import FollowRequests from './FollowRequests.jsx';
+import Notification from './Notifications.jsx';
 import $ from 'jquery';
 
 class Routes extends Component {
@@ -29,6 +30,12 @@ class Routes extends Component {
       return (
         <div>
           <FollowRequests userId={this.props.userId} />
+        </div>
+      );
+    } else if (this.props.showNotifications) {
+      return (
+        <div>
+          <Notification userId={this.props.userId} />
         </div>
       );
     }
