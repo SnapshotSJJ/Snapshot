@@ -104,6 +104,18 @@ module.exports = {
 			});
 		},
 
+		getFolloweesPosts: (req, res) => {
+
+			let user = 1; //req.params.userID
+
+			sequelize.query(`select img_src from posts
+											 where user_id in 
+											 (select follow_id from follows where user_id=${user})`, { type: sequelize.QueryTypes.SELECT })
+				.then((posts) => {
+					res.status(200).send(posts);
+				});
+		},
+
 		postSingleComment: (req, res) => {
 
 			let username = ''; //req.body.username
