@@ -84,10 +84,8 @@ class Login extends React.Component {
     }
     return (
       <div>
-        <h1>My App</h1>
         <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
         <Navbar 
-          showMyPosts={this.props.showMyPosts}
           signOut={this.props.signOut}
           showUploader={this.props.showUploader}
           toggleUploader={this.props.toggleUploader}
