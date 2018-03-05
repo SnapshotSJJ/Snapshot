@@ -128,9 +128,9 @@ module.exports = {
 
 		getFolloweesPosts: (req, res) => {
 
-			let user = req.params.userID;
+			let user = parseInt(req.params.userID);
 
-			sequelize.query(`select img_src from posts
+			sequelize.query(`select img_src, posts.id, like_count, user_id from posts
 											 where user_id in 
 											 (select follow_id from follows where user_id=${user})`, { type: sequelize.QueryTypes.SELECT })
 				.then((posts) => {

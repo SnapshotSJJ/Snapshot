@@ -19,7 +19,7 @@ router.put('/users/accepted/:userID', ctrl.users.acceptedFollower);
 
 router.get('/posts/all', ctrl.posts.getAllPosts);
 
-router.get('/posts/followees', ctrl.posts.getFolloweesPosts)
+router.get('/posts/followees/:userID', ctrl.posts.getFolloweesPosts)
 
 router.get('/posts/comments/:postID', ctrl.posts.getAllComments);
 
