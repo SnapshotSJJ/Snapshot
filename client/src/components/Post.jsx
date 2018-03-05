@@ -59,7 +59,7 @@ class Post extends Component {
   render() {
     return (
       <div>
-        <iframe onClick={this.expandMessages} src={this.props.post.img_src} />
+        <iframe scrolling='no' onClick={this.expandMessages} src={this.props.post.img_src} />
         {
           Number(this.props.userId) !== this.props.post.user_id ?
           <h5 onClick={this.props.filterByUser}>{this.props.post.name}
