@@ -9,7 +9,7 @@ const Navbar = (props) => {
       <button onClick={props.showMyPosts}>My Posts</button>
       <button onClick={props.showUploader} >Make Post</button>
       <button onClick={props.showFollowsButton}>Follow Requests</button>
-      <button>Notifications</button>
+      <button onClick={props.showNotificationsButton}>Notifications</button>
       <button onClick={props.signOut}>Logout</button>
     </div>
   );
