@@ -14,10 +14,12 @@ class Login extends React.Component {
       signedIn: false,
       user: '',
       userId: '',
-      showFollows: false
+      showFollows: false,
+      showNotifications: false
 		};
     firebase.initializeApp(config);
     this.showFollowsButton = this.showFollowsButton.bind(this);
+    this.showNotificationsButton = this.showNotificationsButton.bind(this);
 	}
 
 	componentDidMount() {
@@ -44,6 +46,11 @@ class Login extends React.Component {
         userId: data
       });
     });
+  }
+
+  showNotificationsButton() {
+    this.setState({showNotifications: !this.state.showNotifications});
+    console.log(this.state.showNotifications);
   }
 
   showFollowsButton() {
@@ -76,11 +83,14 @@ class Login extends React.Component {
           toggleUploader={this.props.toggleUploader}
           user={this.state.user}
           showFollowsButton={this.showFollowsButton}
+          showNotificationsButton={this.showNotificationsButton}
         />
         {uploader}
         <Routes
           userId={this.state.userId}
           user={this.state.user}
+          showFollows={this.state.showFollows}
+          showNotifications={this.state.showNotifications}
         />
       </div>
     );

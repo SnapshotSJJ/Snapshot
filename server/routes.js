@@ -5,11 +5,15 @@ router.put('/users/follow/:userID', ctrl.users.followSingleUser);
 
 router.get('/users/:userID/follows', ctrl.users.getFollowerList);
 
+router.get('/users/:userID/accepted', ctrl.users.getAcceptedList);
+
 router.post('/posts/upload/submit', ctrl.posts.submitNewPost);
 
 router.post('/users', ctrl.users.postUser);
 
 router.put('/users/accept/:userID', ctrl.users.acceptNewFollower);
+
+router.put('/users/accepted/:userID', ctrl.users.acceptedFollower);
 
 // router.post('/posts/upload/upload', ctrl.posts.storeNewPost);
 
