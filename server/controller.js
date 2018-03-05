@@ -64,7 +64,7 @@ module.exports = {
 						like_count: req.body.like_count,
 						title: req.body.title,
 						user_id: id[0].id
-					}).then(() => {console.log('Successfully stored post to database!')})
+					}).then(() => {res.status(201).send(console.log('Successfully stored post to database!'))})
 				}
 			)
 			
