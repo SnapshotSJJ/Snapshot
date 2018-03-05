@@ -12,7 +12,6 @@ class Routes extends Component {
     this.state = {
       posts: []
     }
-    this.getPosts = this.getPosts.bind(this);
   }
 
   componentDidMount() {
