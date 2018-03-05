@@ -64,7 +64,7 @@ class Login extends React.Component {
 	render() {
     let uploader;
     if(this.props.toggleUploader) {
-      uploader = <Uploader />;
+      uploader = <Uploader getPosts={this.getPosts} />;
     } else {
       uploader = <div></div>;
     }

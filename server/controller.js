@@ -64,7 +64,7 @@ module.exports = {
 						like_count: req.body.like_count,
 						title: req.body.title,
 						user_id: id[0].id
-					}).then(() => {console.log('Successfully stored post to database!')})
+					}).then(() => {res.status(201).send(console.log('Successfully stored post to database!'))})
 				}
 			)
 			
@@ -79,7 +79,7 @@ module.exports = {
 		getAllPosts: (req, res) => {
 			sequelize.query(`select posts.id, img_src, users.name, user_id, like_count
 											 from posts inner join users
-											 where users.id=user_id;`, { type: sequelize.QueryTypes.SELECT })
+											 where users.id=user_id order by id desc;`, { type: sequelize.QueryTypes.SELECT })
 				.then((posts) => {
 					res.status(200).send(posts);
 				})

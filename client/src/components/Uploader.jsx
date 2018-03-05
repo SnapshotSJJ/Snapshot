@@ -54,7 +54,7 @@ class Uploader extends React.Component {
 
   }
 
-  submitPost() {
+  submitPost(req, getPosts) {
     console.log('this is the firebase user object name: ', firebase.auth().currentUser.displayName)
     console.log('this is the post info: ', this.state.uploadedFileCloudinaryUrl, this.state.title, firebase.auth().currentUser.uid)
     $.post('http://127.0.0.1:1337/posts/upload/submit', {
@@ -63,7 +63,8 @@ class Uploader extends React.Component {
       title: this.state.title,
       name: firebase.auth().currentUser.displayName
     }, () => {
-      console.log(this.state.title, ' successfully stored to database!')
+      console.log(this.state.title, ' successfully stored to database!');
+      getPosts();
     })
   }
 
@@ -78,7 +79,11 @@ class Uploader extends React.Component {
       <div>
         <Dropzone onDrop={this.onDrop} multiple={false} />
         <input type='text' value={this.state.title} onChange={this.updateInput} placeholder='Name your post...'  />
-        <button onClick={this.submitPost} >Submit</button>
+        <button onClick={this.submitPost.bind(null, {
+          img_src: this.state.uploadedFileCloudinaryUrl,
+          like_count: 0,
+          title: this.state.title,
+          name: firebase.auth().currentUser.displayName}, this.props.getPosts)} >Submit</button>
       </div>
     );
   }
