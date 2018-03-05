@@ -55,16 +55,27 @@ class Login extends React.Component {
   }
 
   showNotificationsButton() {
-    this.setState({showNotifications: !this.state.showNotifications});
-    console.log(this.state.showNotifications);
+    this.setState({
+      showNotifications: !this.state.showNotifications,
+      showFollows: false,
+      showFolloweesPosts: false
+    });
   }
 
   showFollowsButton() {
-    this.setState({showFollows: !this.state.showFollows});
+    this.setState({
+      showFollows: !this.state.showFollows,
+      showNotifications: false,
+      showFolloweesPosts: false
+    });
   }
 
   showFolloweesPostsButton() {
-    this.setState({ showFolloweesPosts: !this.state.showFolloweesPosts });
+    this.setState({
+      showFolloweesPosts: !this.state.showFolloweesPosts,
+      showFollows: false,
+      showNotifications: false
+    });
     $.get(`http://127.0.0.1:1337/posts/followees/${this.state.userId}`,  (data) => {
       this.setState({
         followeesPosts: data
