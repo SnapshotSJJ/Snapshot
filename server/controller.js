@@ -106,7 +106,7 @@ module.exports = {
 
 		getFolloweesPosts: (req, res) => {
 
-			let user = 1; //req.params.userID
+			let user = req.params.userID;
 
 			sequelize.query(`select img_src from posts
 											 where user_id in 
@@ -118,10 +118,9 @@ module.exports = {
 
 		postSingleComment: (req, res) => {
 
-			let username = ''; //req.body.username
-			let postID = req.params.postID; 
-			let userID = 2; //req.body.userID
-			let text =  'hello';
+			let postID = req.body.postID; 
+			let userID = req.body.userID;
+			let text =  req.body.text;
 			
 			Comment.create({
 				text: text,
