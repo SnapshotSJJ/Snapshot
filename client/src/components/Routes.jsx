@@ -25,6 +25,13 @@ class Routes extends Component {
   }
   
   render() {
+    if (this.props.showFollows) {
+      return (
+        <div>
+          <FollowRequests userId={this.props.userId} />
+        </div>
+      );
+    }
     return (
       <div>
         <Feed posts={this.state.posts} getPosts={this.getPosts} userId={this.props.userId} />
