@@ -44,11 +44,6 @@ class Feed extends React.Component {
   render() {
     return (
     <div>
-      <h3>Feed</h3>
-      <input type="text" value={this.state.filterUserInput} onChange={this.handleUserFilterInput} /> 
-      <br />
-      <button onClick={this.filterUsers}>Filter</button>
-      <br />
       <br />
         {this.props.posts.map((post, index) => {
           if (this.props.myPosts) {
