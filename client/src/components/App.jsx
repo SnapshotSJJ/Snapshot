@@ -29,21 +29,15 @@ class App extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            <div >
-              <div>
-                <Login 
-                  signOut={this.signOut}
-                  toggleUploader={this.state.toggleUploader}
-                  showUploader={this.showUploader}
-                />
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Grid>
+      <div >
+        <div>
+          <Login 
+            signOut={this.signOut}
+            toggleUploader={this.state.toggleUploader}
+            showUploader={this.showUploader}
+          />
+        </div>
+      </div>
     );
   }
 }
