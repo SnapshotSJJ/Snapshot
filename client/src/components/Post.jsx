@@ -35,13 +35,14 @@ class Post extends Component {
   
   postComment(reqBody) {
     $.post(`http://127.0.0.1:1337/posts/comment`,
-            {
-              text: this.state.myComment,
-              userID: reqBody.userId,
-              postID: reqBody.postId
-            },
-            (data) => {
-      this.getComments();
+      {
+        text: this.state.myComment,
+        userID: reqBody.userId,
+        postID: reqBody.postId
+      },
+      (data) => {
+        this.setState({ myComment: '' });
+        this.getComments();
     });
   }
 
@@ -94,7 +95,8 @@ class Post extends Component {
                   createComment={this.createComment}
                   userId={this.props.userId}
                   postId={this.props.post.id}
-                  postComment={this.postComment}/>
+                  postComment={this.postComment}
+                  myComment={this.state.myComment}/>
       </div>
     );
   }
